@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Operacion;
+use App\Models\Propiedade;
+use App\Models\Tipopropiedad;
+use App\Models\Comuna;
+use App\Models\Equipamiento;
+use App\Models\Foto;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +30,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('sistema.home');
+        $model = Propiedade::AllPropiedades();
+
+        return view('sistema.home', array('model'=>$model));
     }
 }

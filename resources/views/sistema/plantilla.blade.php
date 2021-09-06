@@ -15,12 +15,15 @@
     <script src="{{ asset('js/consultas.js') }}" defer></script>
 
     <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css">
+    
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="https://kit.fontawesome.com/67b6e8d4c0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     <!-- Styles -->
+    @yield('css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -50,10 +53,6 @@
                             <ul class="navbar-nav ml-auto">
                                 <!-- Authentication Links -->
                                 @guest
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('inicio') }}">{{ __('Inicio') }}</a>
-                                    </li>
-
                                     @if (Route::has('login'))
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -66,6 +65,12 @@
                                         </li>
                                     @endif-->
                                 @else
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('inicio') }}">{{ __('Inicio') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('inicio') }}">{{ __('Agregar') }}</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                             {{ Auth::user()->name }}
@@ -101,5 +106,10 @@
             @yield('content')
         </main>
     </div>
+
+    
+    @yield('js')   
+    
+
 </body>
 </html>

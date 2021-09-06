@@ -22,4 +22,7 @@ $(document).ready(function() {
     url = baseurl+"/pulso/public/listarPropiedades";
     var $container = $("#prop");
     $container.load(url); 
+
+    $('#propiedades').DataTable();
+    
 });
