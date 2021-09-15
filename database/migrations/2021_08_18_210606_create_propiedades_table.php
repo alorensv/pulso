@@ -18,11 +18,11 @@ class CreatePropiedadesTable extends Migration
             $table->text('nombre');
             $table->text('descripcion');
             $table->string('palabra_clave');
-            $table->text('precio');
-            $table->text('uf');
+            $table->text('precio')->nullable();
+            $table->text('uf')->nullable();
             $table->text('ubicacion');
-            $table->text('ruta_video');
-            $table->integer('mt2_construido');
+            $table->text('ruta_video')->nullable();
+            $table->integer('mt2_construido')->nullable();
             $table->integer('mt2_total');
             $table->integer('estacionamiento');
             $table->integer('banio');

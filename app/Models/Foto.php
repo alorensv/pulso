@@ -9,4 +9,10 @@ class Foto extends Model
 {
     use HasFactory;
     protected $table = "fotos";
+
+    protected $fillable = ['ruta,'];
+
+    public function imageable(){
+        return $this->morphTo();
+    }
 }

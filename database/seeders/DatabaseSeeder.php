@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Operacion;
 use App\Models\Propiedade;
 use App\Models\Tipopropiedad;
+use App\Models\TgEquipamiento;
 
 class DatabaseSeeder extends Seeder
 {
@@ -79,8 +80,24 @@ class DatabaseSeeder extends Seeder
         $com2->ind_vigencia = 1;
         $com2->save();
 
+        $equi = new TgEquipamiento();
+        $equi->cod_tipequipamiento = 1;
+        $equi->equipamiento = 'Bodega';
+        $equi->save();
+
+        $equi2 = new TgEquipamiento();
+        $equi2->cod_tipequipamiento = 2;
+        $equi2->equipamiento = 'Terraza';
+        $equi2->save();
+
+        $equi3 = new TgEquipamiento();
+        $equi3->cod_tipequipamiento = 3;
+        $equi3->equipamiento = 'Calefacción central';
+        $equi3->save();
+
                 
-        Propiedade::factory(25)->create();
+        //Propiedade::factory(25)->create();
+
 
         // \App\Models\User::factory(10)->create();
     }

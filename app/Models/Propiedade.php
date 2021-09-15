@@ -10,6 +10,23 @@ class Propiedade extends Model
     use HasFactory;
 
     protected $table = "propiedades";
+  
+
+
+    /*public function images()
+    {
+        return $this->morphMany('App\Models\Foto', 'imageable');
+    }*/
+
+    public static function Chart(){
+
+        $data = Propiedade::select('propiedades.cod_operacion')
+            ->selectRaw('count(*) as cantidades')
+            ->join("operacion","operacion.cod_operacion","=","propiedades.cod_operacion")
+            ->groupBy("propiedades.cod_operacion")
+            ->get();
+        return $data;
+    }
 
     public static function GetPropiedad($id){
         $data = Propiedade::select('propiedades.*', 'operacion.operacion')
@@ -21,7 +38,7 @@ class Propiedade extends Model
     public static function AllPropiedades(){
         $data = Propiedade::select('propiedades.*', 'operacion.operacion')
                 ->join('operacion', 'propiedades.cod_operacion', '=', 'operacion.cod_operacion')
-                ->paginate(4);
+                ->get();
         return $data;
     }
 

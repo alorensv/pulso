@@ -51,9 +51,9 @@ class WebController extends Controller
 
     public function verPropiedad($id){
         $model = Propiedade::GetPropiedad($id);
-        $equip = Equipamiento::where("cod_propiedad",$id)->get();  
+        $equip = Equipamiento::GetEquipamientos($id); 
         $fotos = Foto::where("cod_propiedad",$id)->get(); 
-        return view('verPropiedad', array('model'=>$model, 'equip'=>$equip, 'fotos'=>$fotos));
+        return $equip;
     }
 
     public function listarPropiedades(Request $request){
@@ -71,11 +71,13 @@ class WebController extends Controller
 
         foreach($model as $model){
             $foto = Foto::where("cod_propiedad",$model->cod_propiedad)->first();
+            
             echo '<div class="col-md-4 py-3">
                 <div class="card shadow">
                 <span class="tipo_de_prop"><p>'.$model->palabra_clave.'</p></span>';
-                if(isset($foto->ruta)) echo '<a href="/pulso/public/verPropiedad/'.$model->cod_propiedad.'"><img src="images/'.$foto->ruta.'" class="card-img-top" alt="..."></a>';
-                else echo '<a href="/pulso/public/verPropiedad/'.$model->cod_propiedad.'"><img src="images/propiedades/PRUEBA/test0.jpg" class="card-img-top" alt="..."></a>';
+                echo '<a href="/pulso/public/verPropiedad/'.$model->cod_propiedad.'">
+                <img src="'.$foto->ruta.'" class="card-img-top" alt="..."></a>';
+
                 echo '<ul class="list-group list-group-flush" style="margin-top: -2px;">
                     <li class="list-group-item" style="background-color: #1e3255 !important;padding: 2px 10px;color: white;font-weight: 600;">'.$model->operacion.'</li>
                     <li class="list-group-item bg-light" style="color:red;text-align:right">'.$model->uf.' - '.$model->precio.'</li>

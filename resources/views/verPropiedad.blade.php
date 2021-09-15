@@ -22,17 +22,7 @@
             {{$model->uf}} / {{$model->precio}}
         </div>
     </div>
-    <div class="row">      
-        <?php
-        if(isset($model->ruta_video) && $model->ruta_video <> ""){
-            ?><div class="col-md-6">
-                <div>
-                    <?php echo $model->ruta_video; ?>
-                </div>
-            </div><?php
-        }  
-        ?>
-        
+    <div class="row">    
         <div class="col-md-6">
             <div id="demo" class="carousel slide" data-ride="carousel">
 
@@ -51,13 +41,13 @@
                         if($i==0){
                             echo '
                             <div class="carousel-item active">
-                                <img src="../../public/images/'.$foto->ruta.'" alt="" title=""></a>
+                                <img src="../'.$foto->ruta.'" alt="" title=""></a>
                             </div>';
                         }
                         else{
                             echo '
                             <div class="carousel-item">
-                                <img src="../../public/images/'.$foto->ruta.'" alt="" title=""></a>
+                                <img src="../'.$foto->ruta.'" alt="" title=""></a>
                             </div>';
                         }
                         $i++;
@@ -73,39 +63,53 @@
                 <span class="carousel-control-next-icon"></span>
                 </a>
             </div><!-- fin carousel -->
-        </div>
-    </div>
-    <div class="row">        
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header" style="font-size: 14px;text-align:justify">{{$model->descripcion}}</div>
-            </div>
-        </div>
-        <div class="col-md-6">
+
             <div class="card">
                 <div class="card-header" style="font-size: 14px;text-align:justify">
-                    <div class="row">
-                        <div class="col-md-6"><i class="bi bi-aspect-ratio"></i>{{$model->mt2_construido}}/{{$model->mt2_total}} MT2</div>
-                        <div class="col-md-6"><i class="fa fa-bed" aria-hidden="true"></i>{{$model->habitacion}} Habitaciones</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6"><i class="fa fa-bath" aria-hidden="true"></i>{{$model->banio}} Baños</div>
-                        <div class="col-md-6"><i class="fa fa-car" aria-hidden="true"></i>{{$model->estacionamiento}} Estacionamiento</div>
-                    </div>
+                    <div class="col-md-6"><i class="bi bi-aspect-ratio"></i>{{$model->mt2_construido}}/{{$model->mt2_total}} MT2</div>
+                    <?php if ($model->habitacion > 0) {
+                        ?><div class="col-md-6"><i class="fa fa-bed" aria-hidden="true"></i>{{$model->habitacion}} Habitaciones</div><?php
+                    }?>
+                    <?php if ($model->banio > 0) {
+                        ?><div class="col-md-6"><i class="fa fa-bath" aria-hidden="true"></i>{{$model->banio}} Baños</div><?php
+                    }?>
+                    <?php if ($model->estacionamiento > 0) {
+                        ?><div class="col-md-6"><i class="fa fa-bed" aria-hidden="true"></i>{{$model->estacionamiento}} Estacionamiento</div><?php
+                    }?> 
                 </div>
                 <div class="card-body" style="font-size: 14px;">
                     <h4>Equipamiento</h4>
                     <?php
-                    foreach($equip as $eq):
-                        echo '<i class="bi bi-check2-square"></i> '.$eq->equipamiento.' ';
-                    endforeach
+                        foreach($equip as $eq):
+                            echo '<i class="bi bi-check2-square"></i> '.$eq->equipamiento.' ';
+                        endforeach
                     ?>
                 </div>
-                <div class="card-footer">
+            </div>
+        </div>  
+        <div class="col-md-6">
+        <?php
+        if(isset($model->ruta_video) && $model->ruta_video <> ""){
+            ?>
+                <div>
+                    <?php echo $model->ruta_video; ?>
+                </div>
+            <?php
+        }  
+        ?>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header" style="font-size: 14px;text-align:justify">{{$model->descripcion}}</div>
+                </div>
+                <div class="">
                     <?php echo $model->ubicacion; ?>
                 </div>
             </div>
-        </div><!--FIN DIV 6-->
+        </div>  
+        
+    </div>
+    <div class="row">        
+
     </div>
 </div>
 

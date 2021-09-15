@@ -29,3 +29,6 @@ Route::get('/propiedades', [WebController::class, 'propiedades']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/create', [App\Http\Controllers\AdminController::class, 'create'])->name('agregar');
+Route::post('/store', [App\Http\Controllers\AdminController::class, 'store'])->name('store');
+Route::get('/chart', [App\Http\Controllers\AdminController::class, 'chart'])->name('chart');
