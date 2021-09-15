@@ -53,7 +53,7 @@ class WebController extends Controller
         $model = Propiedade::GetPropiedad($id);
         $equip = Equipamiento::GetEquipamientos($id); 
         $fotos = Foto::where("cod_propiedad",$id)->get(); 
-        return $equip;
+        return view('verPropiedad', array('model'=>$model, 'equip'=>$equip, 'fotos'=>$fotos));
     }
 
     public function listarPropiedades(Request $request){
