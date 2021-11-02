@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container">
+<div class="container" style="background-color: #fff">
     
     <div class="row">
         <h4 class="shadow p-3 mb-5 bg-white rounded">Agregar Propiedad</h4>
@@ -12,6 +12,7 @@
     @csrf
     <div class="row">
         <div class="col-md-4">
+            
             <div class="form-group">
                 <label>Nombre *</label>
                 <input type="text" id="nombre"  name="nombre" class="form-control" required="required" placeholder="Nombre">
@@ -70,6 +71,12 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
                         </select>
                     </div>
                 </div>
@@ -82,6 +89,12 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
                         </select>
                     </div>
                 </div>
@@ -97,6 +110,12 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
                         </select>
                     </div>
                 </div>
@@ -153,6 +172,11 @@
                 @foreach ($equipamientos as $equip)
                     <input type="checkbox" name="equipa[]" id="equipa[]" value="{{$equip->cod_tipequipamiento}}" >{{$equip->equipamiento}}<br>
                 @endforeach
+            </div>
+
+            <div class="form-group">
+                <label><strong>En portada</strong></label>
+                <input type="checkbox" id="ind_portada"  name="ind_portada" value="1">
             </div>
 
             <button type="submit" class="btn btn-primary">Agregar Propiedad</button>

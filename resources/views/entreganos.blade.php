@@ -11,8 +11,15 @@
 
 
  <div class="container" style="padding-top: 20px;padding-bottom: 20px;" id="contacto">
-    <div class="row featurette">
 
+  @if (session('info'))
+    <div class="status alert alert-success">{{session('info')}}</div>
+  @endif
+  
+  <form action="{{route('entreganosEmail')}}" method="POST" >
+  <div class="row">            
+    
+      @csrf 
       <div class="col-md-6">
         <mark>Datos personales</mark>
         <div class="form-group">
@@ -34,7 +41,7 @@
 
 
       <div class="col-md-6">
-      <mark>Datos de la propiedad</mark>
+        <mark>Datos de la propiedad</mark>
 
         <div class="form-group">
           <label>Tipo de casa</label>
@@ -62,17 +69,17 @@
 
         <div class="form-group">
           <label>Comentarios adicionales</label>
-          <textarea name="message" id="message" class="form-control" rows="8" placeholder="Consultas"></textarea>
+          <textarea name="message" id="message" class="form-control" rows="8" required="required" placeholder="Consultas"></textarea>
         </div>                        
         
         <div class="form-group">
-          <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required" onClick="enviarmail()">Enviar</button>
+          <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Enviar</button>
         </div>
 
-      </div><!--/#fin div contacto-page-->
-
-
-    </div>
+      </div><!--/#fin col-md-6-->
+    
   </div>
-</div>
+  </form>  
+
+</div></div>
 @endsection

@@ -24,5 +24,7 @@ $(document).ready(function() {
     $container.load(url); 
 
     $('#propiedades').DataTable();
+
+    
     
 });

@@ -5,21 +5,44 @@
 
     <!-- Indicators -->
     <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
+        <?php 
+        $i=0;
+        while ($i < $count) {
+            if($i==0){
+                echo '<li data-target="#demo" data-slide-to="'.$i.'" class="active"></li>';
+            }
+            else{
+                echo '<li data-target="#demo" data-slide-to="'.$i.'"></li>';
+            }
+            $i++;
+        }
+        ?>
     </ul>
 
     <!-- The slideshow -->
     <div class="carousel-inner">
-    <div class="carousel-item active">
-        <img src="images/ccp.jpg" alt="Concepción1" width="1100" height="500">
-    </div>
-    <div class="carousel-item">
-        <img src="images/sanpedro.jpg" alt="San Pedro de la Paz" width="1100" height="500">
-    </div>
-    <div class="carousel-item">
-        <img src="images/ccp.jpg" alt="Concepción" width="1100" height="500">
+        <?= $i=0; ?>
+        @foreach ($model as $item)
+            <?php if($i==0){
+            ?><div class="carousel-item active">
+                <img src="{{$item->ruta}}" alt="{{$item->palabra_clave}}" width="1100" height="500">
+                <div class="carousel-caption d-md-block computador">
+                    <h5 class="title_carousel">{{$item->operacion}} {{$item->precio}} {{$item->uf}}</h5>
+                    <p class="p_carousel">{{$item->nombre}}</p>
+                </div>
+            </div><?php 
+            }else{
+            ?><div class="carousel-item">
+                <img src="{{$item->ruta}}" alt="{{$item->palabra_clave}}" width="1100" height="500">
+                <div class="carousel-caption d-md-block computador">
+                    <h5 class="title_carousel">{{$item->operacion}} {{$item->precio}} {{$item->uf}}</h5>
+                    <p class="p_carousel">{{$item->nombre}}</p>
+                </div>
+            </div><?php
+            }
+            ?>
+            <?= $i++; ?>
+        @endforeach
     </div>
     </div>
 

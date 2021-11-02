@@ -12,10 +12,12 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontReport = [
-        //
-    ];
-
+    public function report(Throwable $e)
+    {
+        if ($e instanceof \Illuminate\Session\TokenMismatchException) {
+            return redirect()->route('login');
+        }
+    }
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *

@@ -36,8 +36,22 @@ class Propiedade extends Model
     }
 
     public static function AllPropiedades(){
-        $data = Propiedade::select('propiedades.*', 'operacion.operacion')
+        $data = Propiedade::select('propiedades.*', 'operacion.operacion', 'tipopropiedad.tipopropiedad', 'comuna.comuna')
                 ->join('operacion', 'propiedades.cod_operacion', '=', 'operacion.cod_operacion')
+                ->join('tipopropiedad', 'propiedades.cod_tipropiedad', '=', 'tipopropiedad.cod_tipropiedad')
+                ->join('comuna', 'propiedades.cod_comuna', '=', 'comuna.cod_comuna')
+                ->get();
+        return $data;
+    }
+
+    public static function Portadas(){
+        $data = Propiedade::select('propiedades.*', 'fotos.ruta', 'operacion.operacion', 'tipopropiedad.tipopropiedad', 'comuna.comuna')
+                ->join('fotos', 'fotos.cod_propiedad', '=', 'propiedades.cod_propiedad')
+                ->join('operacion', 'propiedades.cod_operacion', '=', 'operacion.cod_operacion')
+                ->join('tipopropiedad', 'propiedades.cod_tipropiedad', '=', 'tipopropiedad.cod_tipropiedad')
+                ->join('comuna', 'propiedades.cod_comuna', '=', 'comuna.cod_comuna')
+                ->groupBy('propiedades.cod_propiedad')
+                ->where("ind_portada","1")
                 ->get();
         return $data;
     }

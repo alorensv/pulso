@@ -23,12 +23,18 @@ Route::get('/servicios', [WebController::class, 'servicios'])->name('servicios')
 Route::get('/entreganos', [WebController::class, 'entreganos'])->name('entreganos');
 Route::get('/nosotros', [WebController::class, 'nosotros'])->name('nosotros');
 Route::get('/contacto', [WebController::class, 'contacto'])->name('contacto');
-Route::get('/enviarEmail', [WebController::class, 'enviarEmail']);
+Route::post('/enviarEmail', [WebController::class, 'store'])->name('enviarEmail');
+Route::post('/entreganosEmail', [WebController::class, 'entreganosEmail'])->name('entreganosEmail');
 Route::get('/propiedades', [WebController::class, 'propiedades']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/create', [App\Http\Controllers\AdminController::class, 'create'])->name('agregar');
+Route::get('/edit/{id}', [App\Http\Controllers\AdminController::class, 'edit'])->name('edit');
 Route::post('/store', [App\Http\Controllers\AdminController::class, 'store'])->name('store');
+Route::delete('/delete/{id}', [App\Http\Controllers\AdminController::class, 'delete'])->name('delete');
+Route::patch('/update/{id}', [App\Http\Controllers\AdminController::class, 'update'])->name('update');
 Route::get('/chart', [App\Http\Controllers\AdminController::class, 'chart'])->name('chart');
+
+//Route::resource('admin', AdminController::class); //obtiene todas las rutas del controlador
